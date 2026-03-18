@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  font-family: 'Tajawal', 'Inter', system-ui, -apple-system, sans-serif;
+  direction: rtl;
+  background: #f0fdf4;
+}
+
+/* ===== EDUCATION THEME SYSTEM ===== */
+
+/* Animated gradient background for auth pages */
+.auth-bg {
+  background: linear-gradient(135deg, #065f46 0%, #047857 25%, #0d9488 50%, #0891b2 75%, #065f46 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  animation: floatBubbles 20s ease-in-out infinite;
+}
+
+/* Floating decorative shapes */
+.auth-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes floatBubbles {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(2%, -2%) rotate(1deg); }
+  66% { transform: translate(-1%, 1%) rotate(-1deg); }
+}
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Card with subtle education pattern */
+.edu-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.edu-card:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 10px 24px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+  border-color: #d1fae5;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #065f46, #0d9488);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Input focus style */
+.edu-input {
+  transition: all 0.3s ease;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.875rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+}
+.edu-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Primary button */
+.btn-primary {
+  background: linear-gradient(135deg, #065f46, #047857);
+  color: white;
+  border: none;
+  border-radius: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(6, 95, 70, 0.3);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #047857, #059669);
+  box-shadow: 0 6px 20px rgba(6, 95, 70, 0.4);
+  transform: translateY(-1px);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Animated loading spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+}
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Stats counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-count {
+  animation: countUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Bell swing animation */
+@keyframes swing {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(12deg); }
+  30% { transform: rotate(-10deg); }
+  45% { transform: rotate(8deg); }
+  60% { transform: rotate(-6deg); }
+  75% { transform: rotate(3deg); }
+}
+.animate-swing {
+  animation: swing 1.5s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f0fdf4; }
+::-webkit-scrollbar-thumb { background: #a7f3d0; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #6ee7b7; }
