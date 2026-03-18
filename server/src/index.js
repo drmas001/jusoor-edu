@@ -6,6 +6,13 @@ const path = require('path');
 
 dotenv.config();
 
+console.log('Starting Jusoor API...');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('PORT:', process.env.PORT);
+console.log('MONGODB_URI set:', !!process.env.MONGODB_URI);
+console.log('JWT_SECRET set:', !!process.env.JWT_SECRET);
+console.log('CLIENT_URL:', process.env.CLIENT_URL);
+
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const offerRoutes = require('./routes/offers');
@@ -56,11 +63,17 @@ app.get('/', (req, res) => {
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;
 
+const mongoUri = process.env.MONGODB_URI;
+if (!mongoUri) {
+  console.error('FATAL: MONGODB_URI environment variable is not set!');
+  process.exit(1);
+}
+
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(mongoUri)
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running on port ${PORT}`);
     });
   })
