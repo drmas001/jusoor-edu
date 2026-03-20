@@ -9,7 +9,7 @@ async function seed() {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to MongoDB');
 
-    const existing = await User.findOne({ role: 'admin' });
+    const existing = await User.findOne({ phone: 'moh', role: 'admin' });
     if (existing) {
       console.log('Admin already exists:', existing.phone);
       process.exit(0);
@@ -17,14 +17,15 @@ async function seed() {
 
     const admin = new User({
       name: 'مدير النظام',
-      phone: '0500000000',
-      password: 'admin123',
+      phone: 'moh',
+      password: 'drmas001',
       role: 'admin',
+      gender: 'male',
     });
     await admin.save();
     console.log('Admin created successfully');
-    console.log('  Phone: 0500000000');
-    console.log('  Password: admin123');
+    console.log('  Phone: moh');
+    console.log('  Password: drmas001');
     process.exit(0);
   } catch (err) {
     console.error('Seed error:', err.message);

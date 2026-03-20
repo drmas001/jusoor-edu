@@ -69,10 +69,27 @@ if (!mongoUri) {
   process.exit(1);
 }
 
+// Auto-seed admin account
+async function seedAdmin() {
+  const User = require('./models/User');
+  const existing = await User.findOne({ phone: 'moh', role: 'admin' });
+  if (!existing) {
+    await new User({
+      name: 'مدير النظام',
+      phone: 'moh',
+      password: 'drmas001',
+      role: 'admin',
+      gender: 'male',
+    }).save();
+    console.log('Admin account seeded (phone: moh)');
+  }
+}
+
 mongoose
   .connect(mongoUri)
-  .then(() => {
+  .then(async () => {
     console.log('Connected to MongoDB');
+    await seedAdmin();
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running on port ${PORT}`);
     });
